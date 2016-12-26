@@ -1,29 +1,34 @@
-var Webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const Webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const HOST = 'localhost';
 const PORT = 3001;
+
 const METADATA = {
   title: 'My Test Application',
   host: HOST,
   port: PORT
 };
 
+function root(args) {
+  return __dirname + '/' + args;
+}
+
 module.exports = {
   entry: './src/app/index.ts',
   output: {
-    path: __dirname + '/dist/',
+    path: root('dist'),
     filename: 'bundle.js',
     sourceMapFilename: '[file].map'
   },
   resolve: {
-    extensions: ['.ts', 'js', '.json']
+    extensions: ['.ts', '.js', '.json']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.tsx ? $ /,
-        loader: 'awesome-typescript-loader'
+        use: 'awesome-typescript-loader'
       }
     ]
   },
@@ -34,12 +39,11 @@ module.exports = {
       chunksSortMode: 'dependency',
       metadata: METADATA,
       inject: true,
-      favicon: 'src/assets/icon/favicon.ico'
+      favicon: './src/assets/icon/favicon.ico'
     })
   ],
   devtool: 'source-map',
   devServer: {
-    contentBase: './dist',
     port: METADATA.port,
     host: METADATA.host,
     historyApiFallback: true,
