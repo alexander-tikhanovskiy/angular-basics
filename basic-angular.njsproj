@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="src\assets\icon\favicon.ico" />
     <Content Include="src\index.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -30,6 +31,8 @@
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\app\" />
+    <Folder Include="src\assets\" />
+    <Folder Include="src\assets\icon\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\app\index.ts" />

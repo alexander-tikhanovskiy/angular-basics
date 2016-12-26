@@ -6,14 +6,15 @@ const PORT = 3001;
 const METADATA = {
   title: 'My Test Application',
   host: HOST,
-  port: PORT,
+  port: PORT
 };
 
 module.exports = {
   entry: './src/app/index.ts',
   output: {
     path: __dirname + '/dist/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    sourceMapFilename: '[file].map'
   },
   resolve: {
     extensions: ['.ts', 'js', '.json']
@@ -32,9 +33,11 @@ module.exports = {
       title: METADATA.title,
       chunksSortMode: 'dependency',
       metadata: METADATA,
-      inject: true
+      inject: true,
+      favicon: 'src/assets/icon/favicon.ico'
     })
   ],
+  devtool: 'source-map',
   devServer: {
     contentBase: './dist',
     port: METADATA.port,
@@ -44,5 +47,5 @@ module.exports = {
       aggregateTimeout: 300,
       poll: 1000
     }
-  },
-}
+  }
+};
